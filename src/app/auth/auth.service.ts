@@ -40,7 +40,7 @@ export class AuthService{
     }
 
     isAuth() {
-        return this.user !=  <User>{};
+        return JSON.stringify(this.user) !=  '{}';
     }
 
     authSuccessfully(){
