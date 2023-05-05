@@ -1,6 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { NgForm } from '@angular/forms';
-import { Exercise } from '../exercise.model';
+import { Observable } from 'rxjs';
 import { TrainingService } from '../training.service';
 
 @Injectable()
@@ -9,11 +10,16 @@ import { TrainingService } from '../training.service';
   templateUrl: './new-training.component.html',
   styleUrls: ['./new-training.component.css'],
 })
-export class NewTrainingComponent {
-  exercises: Exercise[] = [];
+export class NewTrainingComponent implements OnInit {
+  exercises: Observable<any>;
 
-  constructor(private trainingService: TrainingService) {
-    this.exercises = this.trainingService.getAvailableExercises();
+  constructor(
+    private trainingService: TrainingService,
+    private db: AngularFirestore
+  ) {}
+
+  ngOnInit(): void {
+    this.exercises = this.db.collection('availableExercises').valueChanges();
   }
 
   onStartTraining(form: NgForm) {

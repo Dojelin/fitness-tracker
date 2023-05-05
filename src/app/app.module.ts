@@ -20,6 +20,12 @@ import { TrainingComponent } from './training/training.component';
 import { TrainingService } from './training/training.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +48,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
