@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TrainingService } from '../training/training.service';
 import { AuthData } from './auth-data.model';
 
@@ -15,7 +16,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private snackbart: MatSnackBar
   ) {}
 
   initAuthListener() {
@@ -36,22 +38,18 @@ export class AuthService {
   registerUser(authData: AuthData) {
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
       .catch((error) => {
-        console.log(error);
+        this.snackbart.open(error.message, null, { duration: 3000 });
       });
   }
 
   login(authData: AuthData) {
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
       .catch((error) => {
-        console.log(error);
+        this.snackbart.open(error.message, null, { duration: 3000 });
       });
   }
 
