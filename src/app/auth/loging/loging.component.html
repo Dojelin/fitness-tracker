@@ -1,24 +1,38 @@
 <section class="signup-form">
-    <form fxLayout="column" 
-    fxLayoutAlign="center center" 
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
     fxLayoutGap="10px"
     [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <input type="email" 
-            matInput 
-            placeholder="Your mail" 
-            formControlName="email">
-            <mat-error>Please enter a valid email.</mat-error>
-
-        </mat-form-field>
-        <mat-form-field>
-            <input type="password" 
-            matInput 
-            placeholder="Your password" 
-            formControlName="password">
-            <mat-error>Missing password.</mat-error>
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
-    </form>
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your mail"
+        formControlName="email"
+      />
+      <mat-error>Please enter a valid email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="Your password"
+        formControlName="password"
+      />
+      <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+    <button
+      *ngIf="!isLoading"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="loginForm.invalid"
+    >
+      Submit
+    </button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </form>
 </section>
