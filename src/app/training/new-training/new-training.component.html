@@ -5,7 +5,7 @@
         <mat-card-title>Time to start a workout</mat-card-title>
       </mat-card-header>
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field *ngIf="!isLoading">
+        <mat-form-field *ngIf="!isLoading && exercises">
           <mat-label>Select type of workout</mat-label>
           <mat-select ngModel name="exercise" required>
             <mat-option
@@ -19,8 +19,23 @@
         <mat-spinner *ngIf="isLoading"></mat-spinner>
       </mat-card-content>
       <mat-card-actions *ngIf="!isLoading" fxLayoutAlign="center">
-        <button color="primary" type="submit" mat-button [disabled]="f.invalid">
+        <button
+          *ngIf="exercises"
+          color="primary"
+          type="submit"
+          mat-button
+          [disabled]="f.invalid"
+        >
           Start
+        </button>
+        <button
+          *ngIf="!exercises"
+          color="primary"
+          (click)="fetchExercises()"
+          type="button"
+          mat-button
+        >
+          Reload
         </button>
       </mat-card-actions>
     </mat-card>

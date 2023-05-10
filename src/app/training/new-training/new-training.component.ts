@@ -28,6 +28,10 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     this.loadingSub = this.uiService.loadingStateChanged.subscribe(
       (isLoading) => (this.isLoading = isLoading)
     );
+    this.fetchExercises();
+  }
+
+  fetchExercises() {
     this.trainingService.fetchAvailableExercises();
   }
 
