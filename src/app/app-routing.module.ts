@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'training',
     loadChildren: () =>
       import('./training/training.modules').then((m) => m.TrainingModule),
+    canLoad: [AuthGuard],
   },
 ];
 
