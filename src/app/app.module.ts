@@ -13,7 +13,6 @@ import { TrainingService } from './training/training.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
@@ -37,7 +36,6 @@ import { TrainingModule } from './training/training.modules';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    AngularFireAuthModule,
     AuthModule,
     TrainingModule,
   ],
