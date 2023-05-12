@@ -18,7 +18,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
 import { UIService } from './shared/ui.service';
-import { TrainingModule } from './training/training.modules';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { TrainingModule } from './training/training.modules';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AuthModule,
-    TrainingModule,
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
