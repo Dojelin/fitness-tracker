@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UIService } from 'src/app/shared/ui.service';
+import * as fromApp from '../../app.reducer';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,12 +14,19 @@ import { AuthService } from '../auth.service';
 })
 export class LogingComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  isLoading$: Observable<boolean>;
   isLoading = false;
   private loadingSub: Subscription;
 
-  constructor(private authService: AuthService, private uiService: UIService) {}
+  constructor(
+    private authService: AuthService,
+    private uiService: UIService,
+    private store: Store<{ ui: fromApp.State }>
+  ) {}
 
   ngOnInit() {
+    this.isLoading$ = this.store.pipe(map((state) => state.ui.isLoading));
+
     this.loadingSub = this.uiService.loadingStateChanged.subscribe(
       (isLoading) => {
         this.isLoading = isLoading;
