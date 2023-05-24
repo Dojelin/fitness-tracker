@@ -52,7 +52,8 @@ export class AuthService {
         // this.uiService.loadingStateChanged.next(false);
         this.store.dispatch(new UI.StopLoading());
         this.uiService.showSnackbar(error.message, null, { duration: 3000 });
-      });
+      })
+      .finally();
   }
 
   login(authData: AuthData) {
