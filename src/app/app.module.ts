@@ -17,7 +17,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
-import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 import { AuthModule } from './auth/auth.module';
 import { UIService } from './shared/ui.service';
 
@@ -38,7 +38,7 @@ import { UIService } from './shared/ui.service';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AuthModule,
-    StoreModule.forRoot({ ui: appReducer }),
+    StoreModule.forRoot(reducers),
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
